@@ -1,0 +1,31 @@
+<form method="get" id="myForm">
+  身高（公分）<input type="text" name="height" id="height" /><br />
+  體重（公斤）<input type="text" name="weight" id="weight" /><br />
+  年齡<input type="text" name="age" id="age" /><br />
+  性別 <input type="radio" name="sex" id="s1" value="male" />男
+  <input type="radio" name="sex" id="s2" value="female" />女<br />
+  <input type="submit" value="Submit" />
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // 防止表單提交後刷新頁面
+  const height = document.getElementById("height").value;
+  const weight = document.getElementById("weight").value;
+  const age = document.getElementById("age").value;
+  const male = document.getElementById("s1");
+  const female = document.getElementById("s2");
+  let bmr;
+  
+  if (male.checked) {
+    bmr = 66 + (13.75 * weight) + (5 * height) - (6.8 * age);
+  } else if (female.checked) {
+    bmr = 655 + (9.56 * weight) + (1.85 * height) - (4.68 * age);
+  } else {
+    alert("請選擇性別");
+    return;
+  }
+  
+  alert("您的BMR為：" + bmr.toFixed(2));
+});
+</script>
